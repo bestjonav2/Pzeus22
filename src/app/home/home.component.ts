@@ -14,6 +14,8 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.earth = new WE.map("earth_div");
     this.earth.setView([46.8011, 8.2266], 2);
+    //https://gibs.earthdata.nasa.gov/wmts/epsg4326/best/MODIS_Terra_CorrectedReflectance_TrueColor/default/2012-07-09/250m/{z}/{x}/{y}.jpg
+    //https://webglearth.github.io/webglearth2-offline/{z}/{x}/{y}.jpg
     WE.tileLayer(
       "https://webglearth.github.io/webglearth2-offline/{z}/{x}/{y}.jpg",
       {
@@ -22,8 +24,8 @@ export class HomeComponent implements OnInit {
           [-85, -180],
           [85, 180],
         ],
-        minZoom: 0,
-        maxZoom: 16,
+        minZoom: 6,
+        maxZoom: 13,
         attribution: "WebGLEarth example",
         tms: true,
       }
