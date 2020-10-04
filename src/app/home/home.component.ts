@@ -84,14 +84,24 @@ export class HomeComponent implements OnInit {
           icon = '../../assets/fire.png';
         } else if (this.selectedCategory === 'volcanoes') {
           icon = '../../assets/volcano.png';
-        } else if(this.selectedCategory === 'severeStorms') {
+        } else if (this.selectedCategory === 'severeStorms') {
           icon = '../../assets/hurricane.png';
         }
 
         this.dataSet.forEach(element => {
           const coordinates = element.geometry[element.geometry.length - 1].coordinates;
-          console.log(coordinates);
+          console.log(element.geometry);
           const marker = WE.marker([coordinates[1] , coordinates[0]], icon, 24, 24).addTo(this.earth);
+
+          const dots = [];
+          element.geometry.slice(0, element.geometry.length - 1).forEach(geoEl => {
+            const geomarker = WE.marker([geoEl.coordinates[1], geoEl.coordinates[0]], '../../assets/dot.svg', 6, 6).addTo(this.earth);
+            dots.push([geoEl.coordinates[1], geoEl.coordinates[0]]);
+          });
+          if (dots.length > 0) {
+            const options = {color: '#90EE02', opacity: 1, fillColor: '#90EE02', fillOpacity: 0.1, weight: 3};
+            WE.polygon([...dots, ...dots.reverse()], options).addTo(this.earth);
+          }
         });
 
         // console.log(this.description);
@@ -119,7 +129,7 @@ export class HomeComponent implements OnInit {
         const row = Math.floor(((90 - coord['coordinates'][1]) * (2 ** size)) / 288 );
         const col = Math.floor(((180 + coord['coordinates'][0]) * (2 ** size)) / 288);
         this.eventData.img = 'https://gibs.earthdata.nasa.gov/wmts/epsg4326/best/MODIS_Terra_CorrectedReflectance_TrueColor/default/2016-09-03/250m/' + size + '/' + row + '/' + col + '.jpg';
-        console.log(row, col);
+        //console.log(row, col);
 
         if (this.collapsedR){
           this.collapsedR = false;
