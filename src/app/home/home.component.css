@@ -9,5 +9,49 @@
 #earth_div {
   width: 100%;
   height: calc(100vh - 60px);
-  background-image: url('../../assets/bg.jpg'); 
+  background-image: url("../../assets/bg.jpg");
+}
+.left-sidebar {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  top: 60px;
+  height: calc(100vh - 60px);
+  width: 25%;
+  left: 0;
+  background: #fff;
+  overflow-y: scroll;
+  color: #666;
+  padding: 0 10px;
+  z-index: 2;
+}
+.close-left-sidebar {
+  position: absolute;
+  top: 15px;
+  right: 5px;
+}
+.left-sidebar.collapsed {
+  left: -100%;
+}
+.left-sidebar-name {
+  position: absolute;
+  top: 60px;
+  height: calc(100vh - 60px);
+  left: 0;
+  background: #fff;
+  color: #666;
+  width: 30px;
+  font-size: 26px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  font-weight: 400;
+  writing-mode: vertical-rl;
+  z-index: 1;
+  border-radius: 0 10px 10px 0;
+}
+
+.link:hover {
+  color: #000;
+  cursor: pointer;
 }

@@ -1,2 +1,20 @@
-<div id ="earth_div" class="content"></div>
+<div id="earth_div" class="content"></div>
 <!--  -->
+<div
+  [ngClass]="{
+    collapsed: collapsed,
+    'left-sidebar': true
+  }"
+>
+  <div class="sidebar-content">
+    <h4>Eventos:</h4>
+    <span class="close-left-sidebar link" (click)="toggleRightSidebar()">X</span>
+    <div class="items">
+      <div *ngFor="let event of dataSet; index as i">
+        <h5>{{ event.title }}</h5>
+        <span>{{ event.description }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="left-sidebar-name link" (click)="toggleRightSidebar()">Eventos</div>

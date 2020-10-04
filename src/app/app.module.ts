@@ -6,11 +6,13 @@ import { LookService } from './look.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ToolbarComponent } from './shared/toolbar/toolbar.component';
+import { HomeComponent} from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
