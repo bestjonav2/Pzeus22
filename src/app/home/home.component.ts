@@ -24,9 +24,9 @@ export class HomeComponent implements OnInit {
           [-85, -180],
           [85, 180],
         ],
-        minZoom: 6,
-        maxZoom: 13,
-        attribution: "WebGLEarth example",
+        minZoom: 1,
+        maxZoom: 16,
+        attribution: "Project Zeus 22",
         tms: true,
       }
     ).addTo(this.earth);
