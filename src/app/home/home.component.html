@@ -11,9 +11,12 @@
     <span class="close-left-sidebar link" (click)="toggleLeftSidebar()">X</span>
     <mat-form-field appearance="fill" class="cat-field">
       <mat-label>Select a category</mat-label>
-      <mat-select [ngModel]="selectedCategory" (ngModelChange)="changeCategory($event)">
+      <mat-select
+        [ngModel]="selectedCategory"
+        (ngModelChange)="changeCategory($event)"
+      >
         <mat-option *ngFor="let cat of categories" [value]="cat.id">
-          {{cat.title}}
+          {{ cat.title }}
         </mat-option>
       </mat-select>
     </mat-form-field>
@@ -23,7 +26,19 @@
         <span>{{ event.description }}</span>
         <span>{{ event.sources[0].title }}</span>
         <div class="items-footer">
-          <button mat-button color="primary" (click)= "onClick(event.geometry[event.geometry.length-1], event.title, event.id)">Find More</button>
+          <button
+            mat-button
+            color="primary"
+            (click)="
+              onClick(
+                event.geometry[event.geometry.length - 1],
+                event.title,
+                event.id
+              )
+            "
+          >
+            Find More
+          </button>
         </div>
       </div>
       <div *ngIf="dataSetMsg != 'Ok'">{{ dataSetMsg }}</div>
@@ -40,10 +55,79 @@
 >
   <div *ngIf="eventData != undefined" class="sidebar-content">
     <h2>{{ eventData.title }}</h2>
-    <span>Categories:</span>
-    <ul>
-      <li *ngFor="let c of eventData.categories">{{ c.title }}</li>
-    </ul>
-    <img width="100%" height="auto" src="{{eventData.img}}" alt="Event image">
+    <div>
+      <span>Categories:</span>
+      <ul>
+        <li *ngFor="let c of eventData.categories">{{ c.title }}</li>
+      </ul>
+    </div>
+    <div *ngIf="eventData.geometry[eventData.geometry.length - 1].magnitudeValue != null">
+      <span>Magnitude:</span>
+      <p>
+        {{ eventData.geometry[eventData.geometry.length - 1].magnitudeValue }}
+        {{ eventData.geometry[eventData.geometry.length - 1].magnitudeUnit }}
+      </p>
+    </div>
+    <div>
+      <span>Last picture:</span>
+      <img
+        width="100%"
+        height="auto"
+        src="{{ eventData.img }}"
+        alt="Event image"
+      />
+    </div>
+    <div class="info">
+      <div *ngIf="selectedCategory == 'wildfires'">
+        <h4>What's a wildfire?</h4>
+        <p>
+          A wildfire, wildland fire or rural fire is an unplanned, unwanted,
+          uncontrolled fire in an area of combustible vegetation starting in
+          rural areas. Depending on the type of vegetation present, a wildfire
+          can also be classified more specifically as a forest fire, brush fire,
+          bushfire (in Australia), desert fire, grass fire, hill fire, peat
+          fire, prairie fire, vegetation fire, or veld fire. Many organizations
+          consider wildfire to mean an unplanned and unwanted fire, while
+          wildland-fire is a broader term that includes prescribed fire as well
+          as wildland fire use (WFU; these are also called monitored response
+          fires).
+        </p>
+        <p>
+          High-severity wildfire creates complex early seral forest habitat
+          (also called "snag forest habitat"), which often has higher species
+          richness and diversity than unburned old forest. Many plant species
+          depend on the effects of fire for growth and reproduction. Wildfires
+          in ecosystems where wildfire is uncommon or where non-native
+          vegetation has encroached may have strongly negative ecological
+          effects.
+        </p>
+        <p>
+          Wildfires are among the most common forms of natural disaster in some
+          regions, including Siberia, California, and Australia. Areas with
+          Mediterranean climates or in the taiga biome are particularly
+          susceptible.
+        </p>
+      </div>
+      <div *ngIf="selectedCategory == 'severeStorms'">
+        <h4>What's a storm?</h4>
+        <p>
+          A storm is any disturbed state of a body especially affecting its
+          surface, and strongly implying a wind force. It may be marked by
+          significant disruptions and lightning (a thunderstorm), heavy
+          precipitation (snowstorm, rainstorm), heavy freezing rain (ice storm),
+          strong winds (tropical cyclone, windstorm), or wind transporting some
+          substance through the atmosphere as in a dust storm, blizzard,
+          sandstorm, etc.
+        </p>
+        <p>
+          Storms have the potential to harm lives and property via storm surge,
+          heavy rain or snow causing flooding or road impassibility, lightning,
+          wildfires, and vertical wind shear. Systems with significant rainfall
+          and duration help alleviate drought in places they move through. Heavy
+          snowfall can allow special recreational activities to take place which
+          would not be possible otherwise, such as skiing and snowmobiling.
+        </p>
+      </div>
+    </div>
   </div>
 </div>
