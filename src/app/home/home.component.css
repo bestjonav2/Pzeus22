@@ -24,6 +24,7 @@
   color: #666;
   padding: 0 10px;
   z-index: 2;
+  transition: left ease-out 0.2s;
 }
 .close-left-sidebar {
   position: absolute;
@@ -50,8 +51,14 @@
   z-index: 1;
   border-radius: 0 10px 10px 0;
 }
-
 .link:hover {
   color: #000;
   cursor: pointer;
+}
+.left-sidebar .sidebar-content .items div {
+  height: 60px;
+  border: 1px solid #666;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  padding: 5px;
 }

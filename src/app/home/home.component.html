@@ -9,6 +9,7 @@
   <div class="sidebar-content">
     <h4>Eventos:</h4>
     <span class="close-left-sidebar link" (click)="toggleRightSidebar()">X</span>
+    <p class="sidebar-desc">Categoria: Wildefires <br>Descripcion: {{description}}<br></p>
     <div class="items">
       <div *ngFor="let event of dataSet; index as i">
         <h5>{{ event.title }}</h5>
