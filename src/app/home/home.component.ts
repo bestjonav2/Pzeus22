@@ -11,9 +11,11 @@ declare var WE: any;
 export class HomeComponent implements OnInit {
   earth: any;
   dataSet: any[] = [];
+  dataSetMsg = '';
   categories: any[] = [];
   selectedCategory = 'wildfires';
-  collapsed = true;
+  collapsedL = true;
+  collapsedR = false;
   firstRun = true;
 
   constructor(protected lookService: LookService) {}
@@ -40,8 +42,8 @@ export class HomeComponent implements OnInit {
     ).addTo(this.earth);
   }
 
-  toggleRightSidebar() {
-    this.collapsed = !this.collapsed;
+  toggleLeftSidebar() {
+    this.collapsedL = !this.collapsedL;
     if (this.firstRun) {
       this.lookService.getCategories().subscribe(
         (data) => {
@@ -53,9 +55,13 @@ export class HomeComponent implements OnInit {
         }
       );
     }
-    if (!this.collapsed) {
+    if (!this.collapsedL) {
       this.setEvents();
     }
+  }
+
+  toggleRightSidebar() {
+
   }
 
   changeCategory(newValue) {
@@ -68,6 +74,12 @@ export class HomeComponent implements OnInit {
     this.lookService.filterByCategory(this.selectedCategory).subscribe(
       (data) => {
         this.dataSet = data['events'];
+        if (this.dataSet.length === 0){
+          this.dataSetMsg = 'No active records found.';
+        } else{
+          this.dataSetMsg = 'Ok';
+        }
+
         //console.log(this.description);
         //console.log(this.dataSet);
       },
