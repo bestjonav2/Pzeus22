@@ -16,4 +16,8 @@ export class LookService {
   filterByCategory(category) {
     return this.http.get('https://eonet.sci.gsfc.nasa.gov/api/v3/categories/' + category);
   }
+
+  getCategories() {
+    return this.http.get('https://eonet.sci.gsfc.nasa.gov/api/v3/categories');
+  }
 }

@@ -11,8 +11,10 @@ declare var WE: any;
 export class HomeComponent implements OnInit {
   earth: any;
   dataSet: any[] = [];
-  description = '';
+  categories: any[] = [];
+  selectedCategory = 'wildfires';
   collapsed = true;
+  firstRun = true;
 
   constructor(protected lookService: LookService) {}
 
@@ -21,18 +23,6 @@ export class HomeComponent implements OnInit {
     this.earth.setView([46.8011, 8.2266], 2);
     //https://gibs.earthdata.nasa.gov/wmts/epsg4326/best/MODIS_Terra_CorrectedReflectance_TrueColor/default/2012-07-09/250m/{z}/{x}/{y}.jpg
     //https://webglearth.github.io/webglearth2-offline/{z}/{x}/{y}.jpg
-
-    this.lookService.filterByCategory('wildfires').subscribe(
-      (data) => {
-        this.description = data['description'];
-        this.dataSet = data['events'];
-        console.log(this.description);
-        console.log(this.dataSet);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
 
     WE.tileLayer(
       'https://webglearth.github.io/webglearth2-offline/{z}/{x}/{y}.jpg',
@@ -52,5 +42,38 @@ export class HomeComponent implements OnInit {
 
   toggleRightSidebar() {
     this.collapsed = !this.collapsed;
+    if (this.firstRun) {
+      this.lookService.getCategories().subscribe(
+        (data) => {
+          this.categories = data['categories'];
+          //console.log(this.categories);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    }
+    if (!this.collapsed) {
+      this.setEvents();
+    }
+  }
+
+  changeCategory(newValue) {
+    console.log(newValue);
+    this.selectedCategory = newValue;
+    this.setEvents();
+  }
+
+  setEvents() {
+    this.lookService.filterByCategory(this.selectedCategory).subscribe(
+      (data) => {
+        this.dataSet = data['events'];
+        //console.log(this.description);
+        //console.log(this.dataSet);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 }

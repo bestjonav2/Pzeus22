@@ -7,15 +7,24 @@
   }"
 >
   <div class="sidebar-content">
-    <h4>Eventos:</h4>
+    <h2>Events:</h2>
     <span class="close-left-sidebar link" (click)="toggleRightSidebar()">X</span>
-    <p class="sidebar-desc">Categoria: Wildefires <br>Descripcion: {{description}}<br></p>
+    <mat-form-field appearance="fill" class="cat-field">
+      <mat-label>Select a category</mat-label>
+      <mat-select [ngModel]="selectedCategory" (ngModelChange)="changeCategory($event)">
+        <mat-option *ngFor="let cat of categories" [value]="cat.id">
+          {{cat.title}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
     <div class="items">
       <div *ngFor="let event of dataSet; index as i">
         <h5>{{ event.title }}</h5>
         <span>{{ event.description }}</span>
+        <span>{{ event.sources[0].title }}</span>
+        <button mat-button color="primary">Find More</button>
       </div>
     </div>
   </div>
 </div>
-<div class="left-sidebar-name link" (click)="toggleRightSidebar()">Eventos</div>
+<div class="left-sidebar-name link" (click)="toggleRightSidebar()">Events</div>

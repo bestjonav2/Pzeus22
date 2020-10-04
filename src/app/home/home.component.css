@@ -41,7 +41,7 @@
   left: 0;
   background: #fff;
   color: #666;
-  width: 30px;
+  width: 25px;
   font-size: 26px;
   display: flex;
   text-align: center;
@@ -50,15 +50,22 @@
   writing-mode: vertical-rl;
   z-index: 1;
   border-radius: 0 10px 10px 0;
+  padding-right: 5px;
 }
 .link:hover {
   color: #000;
   cursor: pointer;
 }
+.left-sidebar .sidebar-content {
+  width: 100%;
+}
 .left-sidebar .sidebar-content .items div {
-  height: 60px;
+  height: 100%;
   border: 1px solid #666;
   border-radius: 10px;
   margin-bottom: 10px;
   padding: 5px;
+}
+.cat-field {
+  width: 100%;
 }
