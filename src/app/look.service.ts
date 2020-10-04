@@ -9,15 +9,15 @@ export class LookService {
 
   constructor(protected http: HttpClient) { }
 
-  getData() {
-    return this.http.get('https://randomuser.me/api/?results=25');
-  }
-
   filterByCategory(category) {
     return this.http.get('https://eonet.sci.gsfc.nasa.gov/api/v3/categories/' + category);
   }
 
   getCategories() {
     return this.http.get('https://eonet.sci.gsfc.nasa.gov/api/v3/categories');
+  }
+
+  filterEventByID(id) {
+    return this.http.get('https://eonet.sci.gsfc.nasa.gov/api/v3/events/'+id);
   }
 }

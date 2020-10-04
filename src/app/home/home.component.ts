@@ -76,4 +76,29 @@ export class HomeComponent implements OnInit {
       }
     );
   }
+
+  onClick(coord, title, id) {
+    // TODO: Remove markers
+    var marker = WE.marker([coord['coordinates'][1] , coord['coordinates'][0]]).addTo(this.earth);
+    marker.bindPopup('<b>'+ title+'</b>');
+
+    this.earth.panTo([
+      coord['coordinates'][1], coord['coordinates'][0]
+    ]);
+
+    this.lookService.filterEventByID(id).subscribe(
+      (data) => {
+        console.log('ALV: ' +id );
+        console.log(data);
+        /**
+         * TODO: Added polygon/geometry
+         *
+         *  */
+      },
+      (error) => {
+        console.log(error)
+      }
+    );
+
+  }
 }
