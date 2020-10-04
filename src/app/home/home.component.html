@@ -23,7 +23,7 @@
         <span>{{ event.description }}</span>
         <span>{{ event.sources[0].title }}</span>
         <div class="items-footer">
-          <button mat-button color="primary" (click)= "onClick(event.geometry[0], event.title, event.id)">Find More</button>
+          <button mat-button color="primary" (click)= "onClick(event.geometry[event.geometry.length-1], event.title, event.id)">Find More</button>
         </div>
       </div>
       <div *ngIf="dataSetMsg != 'Ok'">{{ dataSetMsg }}</div>
@@ -38,17 +38,12 @@
     'right-sidebar': true
   }"
 >
-  <div class="sidebar-content">
-    <h2>Event title:</h2>
-    <div class="items">
-      <div *ngFor="let event of dataSet; index as i">
-        <h5>{{ event.title }}</h5>
-        <span>{{ event.description }}</span>
-        <div class="items-footer">
-          <button mat-button color="primary">Find More</button>
-        </div>
-      </div>
-      <div *ngIf="dataSetMsg != 'Ok'">{{ dataSetMsg }}</div>
-    </div>
+  <div *ngIf="eventData != undefined" class="sidebar-content">
+    <h2>{{ eventData.title }}</h2>
+    <span>Categories:</span>
+    <ul>
+      <li *ngFor="let c of eventData.categories">{{ c.title }}</li>
+    </ul>
+    <img width="100%" height="auto" src="{{eventData.img}}" alt="Event image">
   </div>
 </div>

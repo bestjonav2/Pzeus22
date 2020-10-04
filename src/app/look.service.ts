@@ -18,6 +18,6 @@ export class LookService {
   }
 
   filterEventByID(id) {
-    return this.http.get('https://eonet.sci.gsfc.nasa.gov/api/v3/events/'+id);
+    return this.http.get('https://eonet.sci.gsfc.nasa.gov/api/v3/events/' + id);
   }
 }
