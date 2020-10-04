@@ -91,7 +91,8 @@ export class HomeComponent implements OnInit {
         this.dataSet.forEach(element => {
           const coordinates = element.geometry[element.geometry.length - 1].coordinates;
           console.log(element.geometry);
-          const marker = WE.marker([coordinates[1] , coordinates[0]], icon, 24, 24).addTo(this.earth);
+          let marker = WE.marker([coordinates[1] , coordinates[0]], icon, 24, 24).addTo(this.earth);
+          marker.bindPopup('<b>'+element.title +'</b>');
 
           const dots = [];
           element.geometry.slice(0, element.geometry.length - 1).forEach(geoEl => {
