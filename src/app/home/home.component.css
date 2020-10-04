@@ -22,7 +22,7 @@
   overflow-y: scroll;
   color: #666;
   padding: 15px;
-  z-index: 2;
+  z-index: 99999;
   transition: left ease-out 0.2s;
 }
 .close-left-sidebar {
@@ -85,7 +85,7 @@
   overflow-y: scroll;
   color: #666;
   padding: 15px;
-  z-index: 2;
+  z-index: 9999;
   transition: right ease-out 0.2s;
 }
 .right-sidebar.collapsed {
